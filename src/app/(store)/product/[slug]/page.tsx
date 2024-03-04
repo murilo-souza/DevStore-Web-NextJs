@@ -4,6 +4,12 @@ import { Product } from '@/data/types/products'
 import { Metadata } from 'next'
 import Image from 'next/image'
 
+interface ProductProps {
+  params: {
+    slug: string
+  }
+}
+
 async function getProduct(slug: string): Promise<Product> {
   const response = await api(`/products/${slug}`, {
     next: {
@@ -12,12 +18,6 @@ async function getProduct(slug: string): Promise<Product> {
   })
   const product = await response.json()
   return product
-}
-
-interface ProductProps {
-  params: {
-    slug: string
-  }
 }
 
 export async function generateMetadata({
